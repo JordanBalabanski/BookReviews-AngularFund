@@ -1,0 +1,13 @@
+<nav>
+  <ul>
+    <li><a routerLink="/books">BooksReviews</a></li>
+    <li *ngIf="authService.isAuthenticated()"><a routerLink="/books/create">Create BookReview</a></li>
+    <li *ngIf="authService.isAdmin()"><a routerLink="">Manage Genres</a></li>
+  </ul>
+  <ul>
+    <li *ngIf="!authService.isAuthenticated()"><a routerLink="/user/register">Register</a></li>
+    <li *ngIf="!authService.isAuthenticated()"><a routerLink="/user/login">Login</a></li>
+    <li *ngIf="authService.isAuthenticated()">Welcome, {{username}}!</li>
+    <li *ngIf="authService.isAuthenticated()" (click)="logout()"><a routerLink="/user/login">Logout</a></li>
+  </ul>
+</nav>

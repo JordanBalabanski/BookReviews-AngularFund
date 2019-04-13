@@ -1,0 +1,43 @@
+nav {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  margin: 0;
+  background-color: blue;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  z-index: 1;
+}
+
+ul {
+  margin: 0.3rem 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  vertical-align: middle;
+}
+
+li {
+  margin: 0 0.1rem;
+  list-style: none;
+}
+
+a {
+  color: white;
+  border: 1px solid white;
+  border-radius: 1rem;
+  padding: 0.1rem 0.2rem;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+a:hover {
+  background-color: white;
+  color: blue;
+}
+
+
