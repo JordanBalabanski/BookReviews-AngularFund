@@ -3,6 +3,7 @@ const authCheck = require("../middleware/auth-check");
 const usernameCheck = require("../middleware/username-check");
 const Book = require("../models/Book");
 const Comment = require("../models/Comment");
+const User = require("../models/User");
 
 const router = new express.Router();
 
@@ -82,22 +83,22 @@ router.post("/create", authCheck, (req, res) => {
   });
 });
 
-router.get("/:category", (req, res) => {
-  const category =
-    req.params.category === "all" ? {} : { category: req.params.category };
+router.get("/all", (req, res) => {
+  // const category =
+  //   req.params.category === "all" ? {} : { category: req.params.category };
   // const page = parseInt(req.query.page) || 1;
   // const search = req.query.search;
 
-  Book.find(category)
+  Book.find().populate({path: 'creator', model: User})
     // .skip((page-1) * 10)
     // .limit(10)
     .then(books => {
-      if (!books) {
-        return res.status(404).json({
-          success: false,
-          message: "No books to show!"
-        });
-      }
+      // if (!books) {
+      //   return res.status(404).json({
+      //     success: false,
+      //     message: "No books to show!"
+      //   });
+      // }
       return res.status(200).json(books);
     });
 });

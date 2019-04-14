@@ -1,0 +1,11 @@
+<a *ngFor="let book of booksToShow" routerLink="/books/details/{{book._id}}">
+  <div class="card col-lg-2" style="width: 18rem;">
+    <h5 class="card-title">{{book.title}}</h5>
+    <img class="card-img-top" src="{{book.image}}" alt="Card image cap">
+
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">Created by: {{book.creator.username}}</li>
+      <li class="list-group-item">Genre: {{book.genre}}</li>
+    </ul>
+  </div>
+</a>

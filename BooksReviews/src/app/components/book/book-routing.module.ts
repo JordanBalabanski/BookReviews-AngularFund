@@ -1,13 +1,14 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { GenresComponent } from './genres/genres.component';
+import { ListComponent } from './list/list.component';
 
 const routes: Routes = [
-  { path: 'manage', component: GenresComponent },
+  { path: 'all', component: ListComponent },
+  { path: 'myReviews', component: ListComponent },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class GenreRoutingModule { }
+export class BookRoutingModule { }

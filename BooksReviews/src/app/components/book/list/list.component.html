@@ -1,0 +1,13 @@
+<div class="container col col-lg-12">
+  <h1>Books Reviews</h1>
+  <div class="genres" *ngIf="genres$">
+    <ul>
+      <li><button (click)="filter('All')">All</button></li>
+      <li *ngFor="let genre of genres$ | async"><button (click)="filter(genre.genre)">{{genre.genre}}</button></li>
+      <li><button (click)="filter('Others')">Others</button></li>
+    </ul>
+  </div>
+  <div class="books">
+    <app-show-books [booksToShow]="booksToShow"></app-show-books>
+  </div>
+</div>

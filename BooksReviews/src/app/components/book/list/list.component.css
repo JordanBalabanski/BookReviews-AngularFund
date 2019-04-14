@@ -1,0 +1,33 @@
+.container {
+  padding: 60px 0;
+  z-index: 0;
+}
+
+ul {
+  margin: 0.3rem 0;
+  padding: 0;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+  vertical-align: middle;
+}
+
+li {
+  margin: 0 0.1rem;
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+button {
+  border-radius: 0.5rem;
+}
+
+button:hover {
+  background-color: white;
+  color: blue;
+}

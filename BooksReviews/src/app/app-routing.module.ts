@@ -7,6 +7,7 @@ const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'books' },
   { path: 'user', loadChildren: './components/authentication/authentication.module#AuthenticationModule', canLoad: [UnauthGuard] },
   { path: 'genres', loadChildren: './components/genre/genre.module#GenreModule', canLoad: [AdminGuard] },
+  { path: 'books', loadChildren: './components/book/book.module#BookModule' },
 ];
 
 @NgModule({
