@@ -1,0 +1,25 @@
+<div class="container">
+  <h1>Genres</h1>
+  <form [formGroup]="form" (submit)="create()">
+    <input type="text" placeholder="Genre" formControlName="genre">
+    <div class="alert alert-danger" *ngIf="genre?.touched && genre?.errors">
+      <p>Genre is required!</p>
+    </div>
+    <button [disabled]="form.invalid">Add genre</button>
+  </form>
+  <h2>All Genres</h2>
+  <ul class="list-group">
+    <li class="list-group-item list-group-item-action">
+      <span>All</span>
+      <!-- <button (click)="delete(genre._id)"><i class="fas fa-trash-alt"></i></button> -->
+    </li>
+    <li *ngFor="let genre of (genres$ | async)" class="list-group-item list-group-item-action">
+      <span>{{genre.genre}}</span>
+      <button (click)="delete(genre._id)"><i class="fas fa-trash-alt"></i></button>
+    </li>
+    <li class="list-group-item list-group-item-action">
+        <span>Other</span>
+        <!-- <button (click)="delete(genre._id)"><i class="fas fa-trash-alt"></i></button> -->
+      </li>
+  </ul>
+</div>

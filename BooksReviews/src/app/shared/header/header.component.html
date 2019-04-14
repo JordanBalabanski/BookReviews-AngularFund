@@ -1,8 +1,8 @@
 <nav>
   <ul>
-    <li><a routerLink="/books">BooksReviews</a></li>
+    <li><a routerLink="/books">Books Reviews</a></li>
     <li *ngIf="authService.isAuthenticated()"><a routerLink="/books/create">Create BookReview</a></li>
-    <li *ngIf="authService.isAdmin()"><a routerLink="">Manage Genres</a></li>
+    <li *ngIf="authService.isAdmin()"><a routerLink="/genres/manage">Manage Genres</a></li>
   </ul>
   <ul>
     <li *ngIf="!authService.isAuthenticated()"><a routerLink="/user/register">Register</a></li>

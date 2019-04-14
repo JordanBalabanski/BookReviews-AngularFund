@@ -1,0 +1,35 @@
+.container {
+  padding: 60px 0;
+  z-index: 0;
+}
+
+button:disabled {
+  cursor: not-allowed;
+}
+
+input.ng-valid {
+  border-left: 5px solid #42A948; /* green */
+}
+
+input.ng-invalid.ng-touched {
+  border-left: 5px solid #A94442; /* red */
+}
+
+li {
+  display: flex;
+  justify-content: space-between;
+}
+
+button {
+  margin: 0;
+  padding: 0 0.1rem;
+  border-radius: 1rem;
+}
+
+button:hover{
+  background-color: blue;
+}
+
+i {
+  vertical-align: middle;
+}
