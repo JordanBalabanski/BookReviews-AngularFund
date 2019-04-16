@@ -15,10 +15,10 @@ export class ResponseHandlerInterceptor implements HttpInterceptor {
     return next.handle(req).pipe(tap((success) => {
       if(success instanceof HttpResponse){
         console.log(success.url);
-        // if(success.url.endsWith('register') || success.url.endsWith('login') || success.url.endsWith('create') || success.url.includes('delete')){
-        //   console.log(success);
-        //   this.toastr.success(success['body']['message']);
-        // }
+        if(success.url.endsWith('register') || success.url.endsWith('login') || success.url.endsWith('create') || success.url.includes('edit') || success.url.includes('delete')){
+          console.log(success);
+          this.toastr.success(success['body']['message']);
+        }
       }
     }), catchError((err) => {
       console.log(err);

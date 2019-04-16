@@ -117,6 +117,7 @@ router.get("/all", (req, res) => {
 router.get("/details/:id", (req, res) => {
   const id = req.params.id;
   Book.findById(id)
+    .populate({ path: 'creator', model: User })
     .populate({ path: 'comments', model: Comment })
     .then(book => {
       if (!book) {

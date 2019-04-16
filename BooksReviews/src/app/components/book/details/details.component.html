@@ -1,3 +1,18 @@
-<p>
-  details works!
-</p>
+<div class="container">
+  <h1>Created by: {{book.creator.username}}</h1>
+  <div class="book">
+    <div class="left">
+      <h2>Title: {{book.title}}</h2>
+      <h3>Genre: {{book.genre}}</h3>
+      <img src="{{book.image}}" alt="Book cover">
+    </div>
+    <div class="right">
+      <h2>Review:</h2>
+      <p>{{book.content}}</p>
+    </div>
+  </div>
+  <div class="btns">
+    <a routerLink="/books/edit/{{book._id}}" class="btn btn-primary">Edit</a>
+    <button class="btn btn-danger">Delete</button>
+  </div>
+</div>

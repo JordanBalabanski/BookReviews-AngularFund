@@ -1,0 +1,42 @@
+.container {
+  padding: 65px 0;
+  z-index: 0;
+}
+
+.book {
+  display: flex;
+  justify-content: space-evenly;
+  width: 100%;
+  border: 3px solid black;
+  border-radius: 1rem;
+}
+
+.left {
+  width: 20%;
+}
+
+.right {
+  border-left: 1px solid black;
+  width: 70%;
+  padding-left: 1rem;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+}
+
+.btns {
+  margin: 10px 0;
+  text-align: center;
+}
+
+img {
+  width: 100%;
+  /* height: 56.25%; */
+}
+
+a {
+  margin-right: 5px;
+}
+
+h1 {
+  text-align: center;
+}

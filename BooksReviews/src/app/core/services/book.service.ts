@@ -17,7 +17,7 @@ export class BookService {
 
   create(body) {
     console.log(body);
-    return this.http.post<IBook>(this.createURL, body);
+    return this.http.post<IBook>(this.createURL, body).subscribe(() => {});
   }
 
   listAll() {
@@ -33,7 +33,7 @@ export class BookService {
   }
 
   edit(id, body) {
-    return this.http.put(this.editURL + id, body);
+    return this.http.put(this.editURL + id, body).subscribe(() => {});
   }
 
   delete(id) {

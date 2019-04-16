@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { BookService } from 'src/app/core/services/book.service';
 import { IBook } from 'src/app/shared/models/IBook';
+import { BookService } from 'src/app/core/services/book.service';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -18,10 +18,9 @@ export class DetailsComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.id = this.route.snapshot.params['id'];
-    this.bookService.details(this.id).subscribe((data) => {
-      this.book = data;
-    })
+    this.route.params.subscribe(params => { this.id = params['id'];
+    this.bookService.details(this.id).subscribe(data => this.book = data)
+  })
   }
 
 }
