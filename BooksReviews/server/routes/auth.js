@@ -2,6 +2,8 @@ const express = require('express')
 const passport = require('passport')
 const validator = require('validator')
 
+const User = require('../models/User')
+
 const router = new express.Router()
 
 function validateSignupForm (payload) {
@@ -60,6 +62,20 @@ function validateLoginForm (payload) {
     errors
   }
 }
+
+router.get('/getUser/:username', (req, res) => {
+  const { username } = req.params;
+  User.find({username}).then((user) => {
+    if (!user) {
+      return res.status(404).json({
+        success: false,
+        message: 'No such user.'
+      })
+    }
+
+    return res.status(200).json(user);
+  })
+})
 
 router.post('/register', (req, res, next) => {
   const validationResult = validateSignupForm(req.body)

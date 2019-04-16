@@ -62,7 +62,7 @@ function validateBookForm(payload) {
   };
 }
 
-router.post("/create", authCheck, (req, res) => {
+router.post("/create", authCheck, async(req, res) => {
   const book = req.body;
   book.creator = req.user._id;
   const validationResult = validateBookForm(book);
@@ -74,13 +74,24 @@ router.post("/create", authCheck, (req, res) => {
     });
   }
 
-  Book.create(book).then(book => {
-    res.status(200).json({
+  const bookCreated = await Book.create(book);
+  if (!bookCreated) {
+    return res.status(400).json({
+      success: false,
+      message: validationResult.message,
+      errors: validationResult.errors
+    });
+  }
+  const user = await User.findById(book.creator);
+  user.posts.push(bookCreated._id);
+  user.save().then(() => {
+    return res.status(200).json({
       success: true,
       message: "Book added successfully.",
       book
     });
-  });
+  })
+
 });
 
 router.get("/all", (req, res) => {
@@ -123,7 +134,7 @@ router.get("/myPosts", authCheck, (req, res) => {
   const user = req.user._id;
   const page = parseInt(req.query.page) || 1;
 
-  Book.find({ creator: user })
+  Book.find({ creator: user }).populate({path: 'creator', model: User})
     // .skip((page-1) * 10)
     // .limit(10)
     .then(books => {

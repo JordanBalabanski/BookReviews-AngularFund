@@ -23,7 +23,7 @@ export class ListComponent implements OnInit {
     ) { }
 
   ngOnInit() {
-    console.log(this.route.snapshot.url[0].path);
+    // console.log(this.route.snapshot.url[0].path);
     const path = this.route.snapshot.url[0].path;
     if (path === 'all') {
       this.genres$ = this.genreService.listAll();

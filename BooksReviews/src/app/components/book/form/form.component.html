@@ -1,0 +1,115 @@
+<div class="container">
+  <div class="row">
+    <div class="col-lg-2"></div>
+    <div *ngIf="isCreate; then createForm; else editForm">
+    </div>
+    <div class="col-lg-2"></div>
+  </div>
+</div>
+
+<ng-template #createForm>
+  <div class="col-lg-8">
+    <h1>Create</h1>
+    <form [formGroup]="form" (submit)="createBook()">
+      <div class="form-group input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text"> <i class="fa fa-theater-masks"></i> </span>
+        </div>
+        <input class="form-control" placeholder="Title" formControlName="title">
+      </div>
+      <div class="alert alert-danger" *ngIf="title?.touched && title?.errors">
+        <span>Please enter a valid title.</span>
+      </div>
+      <div class="form-group input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text"> <i class="fas fa-swatchbook"></i> </span>
+          </div>
+          <select class="form-control" formControlName="genre">
+            <option disabled selected>Select genre</option>
+            <option value="{{genre.genre}}" *ngFor="let genre of genres">{{genre.genre}}</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+        <div class="alert alert-danger" *ngIf="genre?.touched && genre?.errors">
+          <span>Please select a genre.</span>
+        </div>
+      <div class="form-group input-group" *ngIf="!image?.errors">
+          <img src="{{form.value.image}}" alt="Book Cover">
+        </div>
+        <div class="form-group input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text"> <i class="fa fa-image"></i> </span>
+          </div>
+          <input class="form-control" placeholder="Book cover - image URL" formControlName="image">
+        </div>
+        <div class="alert alert-danger" *ngIf="image?.touched && image?.errors">
+          <span>Please enter a valid image URL.</span>
+        </div>
+      <div class="form-group input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text"> <i class="fas fa-file-alt"></i> </span>
+        </div>
+        <textarea class="form-control" placeholder="Content" formControlName="content"></textarea>
+      </div>
+      <div class="alert alert-danger" *ngIf="content?.touched && content?.errors">
+        <span>Content should not be less than 30 characters.</span>
+      </div>
+      <div class="form-group">
+        <button type="submit" class="btn btn-primary btn-block" [disabled]="form.invalid">Create</button>
+      </div>
+    </form>
+  </div>
+</ng-template>
+
+<ng-template #editForm>
+  <div class="col-lg-8">
+    <h1>Edit</h1>
+    <form [formGroup]="form" (submit)="edit()">
+      <div class="form-group input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text"> <i class="fa fa-theater-masks"></i> </span>
+        </div>
+        <input class="form-control" placeholder="Title" [(ngModel)]="book.title" formControlName="title">
+      </div>
+      <div class="alert alert-danger" *ngIf="title?.touched && title?.errors">
+        <span>Please enter a valid title.</span>
+      </div>
+      <div class="form-group input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text"> <i class="fa fa-theater-masks"></i> </span>
+        </div>
+        <select class="form-control" [(ngModel)]="book.genre" formControlName="genre">
+          <option disabled>Select genre</option>
+          <option value="{{genre.genre}}" *ngFor="let genre of genres">{{genre.genre}}</option>
+        </select>
+      </div>
+      <div class="alert alert-danger" *ngIf="genre?.touched && genre?.errors">
+        <span>Please select a genre.</span>
+      </div>
+      <div class="form-group input-group" *ngIf="!image?.errors">
+          <img src="{{form.value.image}}" alt="Book Cover">
+        </div>
+        <div class="form-group input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text"> <i class="fa fa-image"></i> </span>
+          </div>
+          <input class="form-control" placeholder="Book cover - image URL" [(ngModel)]="book.image" formControlName="image">
+        </div>
+        <div class="alert alert-danger" *ngIf="image?.touched && image?.errors">
+          <span>Please enter a valid image URL.</span>
+        </div>
+      <div class="form-group input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text"> <i class="fas fa-file-alt"></i> </span>
+        </div>
+        <textarea class="form-control" placeholder="Content" [(ngModel)]="book.content" formControlName="content"></textarea>
+      </div>
+      <div class="alert alert-danger" *ngIf="content?.touched && content?.errors">
+        <span>Content should not be less than 30 characters.</span>
+      </div>
+      <div class="form-group">
+        <button type="submit" class="btn btn-primary btn-block" [disabled]="form.invalid">Edit</button>
+      </div>
+    </form>
+  </div>
+</ng-template>

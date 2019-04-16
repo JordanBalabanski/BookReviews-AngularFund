@@ -4,7 +4,7 @@
     <ul>
       <li><button (click)="filter('All')">All</button></li>
       <li *ngFor="let genre of genres$ | async"><button (click)="filter(genre.genre)">{{genre.genre}}</button></li>
-      <li><button (click)="filter('Others')">Others</button></li>
+      <li><button (click)="filter('Other')">Other</button></li>
     </ul>
   </div>
   <div class="books">
