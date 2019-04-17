@@ -16,8 +16,8 @@ export class BookService {
   constructor(private http : HttpClient) { }
 
   create(body) {
-    console.log(body);
-    return this.http.post<IBook>(this.createURL, body).subscribe(() => {});
+    // console.log(body);
+    return this.http.post<IBook>(this.createURL, body);
   }
 
   listAll() {
@@ -33,7 +33,7 @@ export class BookService {
   }
 
   edit(id, body) {
-    return this.http.put(this.editURL + id, body).subscribe(() => {});
+    return this.http.put(this.editURL + id, body);
   }
 
   delete(id) {

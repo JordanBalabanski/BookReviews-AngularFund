@@ -4,7 +4,7 @@ import { AdminGuard } from './core/guards/admin.guard';
 import { UnauthGuard } from './core/guards/unauth.guard'
 
 const routes: Routes = [
-  { path: '', pathMatch: 'full', redirectTo: 'books' },
+  { path: '', pathMatch: 'full', redirectTo: 'books/all' },
   { path: 'user', loadChildren: './components/authentication/authentication.module#AuthenticationModule', canLoad: [UnauthGuard] },
   { path: 'genres', loadChildren: './components/genre/genre.module#GenreModule', canLoad: [AdminGuard] },
   { path: 'books', loadChildren: './components/book/book.module#BookModule' },

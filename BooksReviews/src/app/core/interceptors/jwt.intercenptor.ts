@@ -21,7 +21,6 @@ export class JwtInterceptor implements HttpInterceptor {
       //   Authorization: `Bearer ${this.authService.getToken()}`
       // }
     })
-    console.log('fuck off');
     return next.handle(jsonReq);
   };
 

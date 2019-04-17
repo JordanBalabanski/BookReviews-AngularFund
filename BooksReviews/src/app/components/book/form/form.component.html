@@ -81,6 +81,7 @@
         <select class="form-control" [(ngModel)]="book.genre" formControlName="genre">
           <option disabled>Select genre</option>
           <option value="{{genre.genre}}" *ngFor="let genre of genres">{{genre.genre}}</option>
+          <option value="Other">Other</option>
         </select>
       </div>
       <div class="alert alert-danger" *ngIf="genre?.touched && genre?.errors">

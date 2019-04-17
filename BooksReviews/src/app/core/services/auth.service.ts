@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { IUser } from 'src/app/shared/models/IUser';
+import { Observable } from 'rxjs';
+import { Params } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -10,15 +12,19 @@ export class AuthService {
   private readonly registerUrl = 'http://localhost:5000/auth/register';
   private readonly getUserURL = 'http://localhost:5000/auth/getUser/';
 
-  user: IUser;
+  private _user: IUser = null;
 
   constructor(
     private http : HttpClient
   ) {  }
 
+  get user() {
+    return this._user;
+  }
+
   setUser() {
     const username = localStorage.getItem('username');
-    this.http.get<IUser>(this.getUserURL + username).subscribe(data => {this.user = data; console.log(this.user[0]);});
+    this.http.get<IUser>(this.getUserURL + username).subscribe(data => {this._user = data[0]; console.log(this._user);});
   }
 
   register(body) {
@@ -41,9 +47,10 @@ export class AuthService {
     return localStorage.getItem('isAdmin') === 'true';
   }
 
-  isAuthor(id) {
-    return this.user[0].posts.includes(id);
-  }
+  // canModify(id) {
+  //   console.log(this.user);
+  //   return this.user.posts.includes(id) || localStorage.getItem('isAdmin') === 'true';
+  // }
 
   getToken() {
     return localStorage.getItem('token');

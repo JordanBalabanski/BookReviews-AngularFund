@@ -88,7 +88,7 @@ router.post("/create", authCheck, async(req, res) => {
     return res.status(200).json({
       success: true,
       message: "Book added successfully.",
-      book
+      book: bookCreated
     });
   })
 
@@ -149,7 +149,7 @@ router.delete("/delete/:id", authCheck, (req, res) => {
 
   Book.findById(id).then(book => {
     if (!book) {
-      return res.status(200).json({
+      return res.status(404).json({
         success: false,
         message: "Book does not exists!"
       });
@@ -181,7 +181,7 @@ router.put("/edit/:id", authCheck, async (req, res) => {
   try {
     const bookToEdit = await Book.findById(id);
 
-    if (!book) {
+    if (!bookToEdit) {
       return res.status(404).json({
         success: false,
         message: "Book does not exists!"
@@ -210,7 +210,8 @@ router.put("/edit/:id", authCheck, async (req, res) => {
     Book.findByIdAndUpdate(id, book).then(() => {
       return res.status(200).json({
         success: true,
-        message: "Book edited successfully!"
+        message: "Book edited successfully!",
+        book: bookToEdit
       });
     });
   } catch (error) {

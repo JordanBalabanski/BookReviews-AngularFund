@@ -13,6 +13,6 @@
   </div>
   <div class="btns">
     <a routerLink="/books/edit/{{book._id}}" class="btn btn-primary">Edit</a>
-    <button class="btn btn-danger">Delete</button>
+    <button class="btn btn-danger" (click)="delete(book._id)">Delete</button>
   </div>
 </div>

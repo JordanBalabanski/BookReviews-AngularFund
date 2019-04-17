@@ -5,6 +5,7 @@ import { ValidateUrl } from "./url.validator";
 import { IBook } from "src/app/shared/models/IBook";
 import { ActivatedRoute, Router } from "@angular/router";
 import { IGenre } from "src/app/shared/models/IGenre";
+import { AuthService } from 'src/app/core/services/auth.service';
 // import { Observable } from 'rxjs';
 
 @Component({
@@ -23,6 +24,7 @@ export class FormComponent implements OnInit, AfterViewChecked  {
   constructor(
     private fb: FormBuilder,
     private bookService: BookService,
+    private authService: AuthService,
     private route: ActivatedRoute,
     private router: Router,
     private cdRef : ChangeDetectorRef
@@ -42,16 +44,21 @@ export class FormComponent implements OnInit, AfterViewChecked  {
   }
 
   create() {
-    console.log("here");
-    this.bookService.create(this.form.value);
-    this.router.navigate(["/books/all"]);
+    this.bookService.create(this.form.value).subscribe(data => {
+      this.authService.setUser();
+      const bookId = data['book']['_id'];
+      this.router.navigate([`/books/details/${bookId}`]);
+    });
   }
 
   edit() {
     this.route.params.subscribe(params => {
       this.id = params["id"];
-      this.bookService.edit(this.id, this.form.value);
-      this.router.navigate(["/books/all"]);
+      this.bookService.edit(this.id, this.form.value).subscribe(data => {
+        const bookId = data['book']['_id'];
+        this.authService.setUser();
+        this.router.navigate([`/books/details/${bookId}`]);
+      });
     });
   }
 
