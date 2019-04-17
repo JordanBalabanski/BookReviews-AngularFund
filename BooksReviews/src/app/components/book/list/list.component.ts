@@ -5,6 +5,7 @@ import { GenreService } from "src/app/core/services/genre.service";
 import { IBook } from "src/app/shared/models/IBook";
 import { BookService } from "src/app/core/services/book.service";
 import { ActivatedRoute, UrlSegment } from "@angular/router";
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: "app-list",
@@ -15,11 +16,12 @@ export class ListComponent implements OnInit {
   genres$: Observable<IGenre[]>;
   books: IBook[];
   booksToShow: IBook[];
+  form: FormGroup;
 
   constructor(
     private route: ActivatedRoute,
     private genreService: GenreService,
-    private bookService: BookService
+    private fb: FormBuilder
   ) {}
 
   ngOnInit() {
@@ -30,6 +32,10 @@ export class ListComponent implements OnInit {
     if (path === "all") {
       this.genres$ = this.genreService.listAll();
     }
+
+    this.form = this.fb.group({
+      search: ['']
+    })
   }
 
   filter(filterStr) {
@@ -38,5 +44,9 @@ export class ListComponent implements OnInit {
     } else {
       this.booksToShow = this.books;
     }
+  }
+
+  search() {
+    this.booksToShow = this.books.filter(book => book.title.toLowerCase().includes(this.form.value.search.toLowerCase()));
   }
 }

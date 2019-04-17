@@ -1,5 +1,11 @@
 <div class="container col col-lg-12">
   <h1>Books Reviews</h1>
+  <div class="search">
+    <h2>Search:</h2>
+    <form [formGroup]="form">
+      <input type="text" placeholder="Search..." formControlName="search" (keyup)="search()">
+    </form>
+  </div>
   <div class="genres" *ngIf="genres$">
     <ul>
       <li><button (click)="filter('All')">All</button></li>

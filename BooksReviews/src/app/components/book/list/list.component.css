@@ -3,6 +3,24 @@
   z-index: 0;
 }
 
+.search {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+input {
+  width: 50%;
+  border-radius: 1rem;
+}
+
+input::placeholder {
+  text-align: center;
+}
+
+input::content {
+  text-align: center;
+}
+
 ul {
   margin: 0.3rem 0;
   padding: 0;
