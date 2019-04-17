@@ -7,9 +7,10 @@ import { FormComponent } from './form/form.component';
 import { BookRoutingModule } from './book-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { DetailsComponent } from './details/details.component';
+import { CommentSectionComponent } from './comment-section/comment-section.component';
 
 @NgModule({
-  declarations: [ListComponent, ShowBooksComponent, ControlFormComponent, FormComponent, DetailsComponent],
+  declarations: [ListComponent, ShowBooksComponent, ControlFormComponent, FormComponent, DetailsComponent, CommentSectionComponent],
   imports: [
     CommonModule,
     BookRoutingModule,

@@ -1,0 +1,23 @@
+<div class="container">
+    <div class="create">
+      <form [formGroup]="form" (submit)="Comment()">
+        <textarea formControlName="content" rows="3" placeholder="Write a comment."></textarea>
+        <button class="btn btn-primary" [disabled]="form.invalid">Comment</button>
+      </form>
+    </div>
+    <div class="list">
+      <ul>
+        <li *ngFor="let comment of comments$ | async">
+          <div class="comment">
+            <div class="header">
+              <span><i class="fas fa-user"></i> {{comment.creator}}</span>
+              <span><i class="fas fa-clock"></i> {{comment.date | date: 'HH:mm:ss dd MMM yyyy EEEE'}}</span>
+            </div>
+            <p class="content">
+              {{comment.content}}
+            </p>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>

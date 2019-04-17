@@ -5,10 +5,7 @@ module.exports = (req, res, next) => {
   console.log(req.headers);
   if (!req.headers.authorization) {
     console.log("HERE");
-
-    req.username = "Guest";
-
-    return next();
+    return res.status(401).end()
   }
 
   // get the last part from a authorization header string like "bearer token-value"
@@ -18,7 +15,9 @@ module.exports = (req, res, next) => {
   return jwt.verify(token, "s0m3 r4nd0m str1ng", (err, decoded) => {
     // the 401 code is for unauthorized status
     if (err) {
-      return res.status(401).end();
+      req.username = "Guest";
+
+      return next();
     }
 
     const userId = decoded.sub;

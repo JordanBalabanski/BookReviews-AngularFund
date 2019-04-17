@@ -118,7 +118,7 @@ router.get("/details/:id", (req, res) => {
   const id = req.params.id;
   Book.findById(id)
     .populate({ path: 'creator', model: User })
-    .populate({ path: 'comments', model: Comment })
+    // .populate({ path: 'comments', model: Comment })
     .then(book => {
       if (!book) {
         return res.status(404).json({
@@ -246,6 +246,13 @@ router.post('/details/:id/comment/create', usernameCheck, async (req, res) => {
   } catch (error) {
     console.log(error);
   }
+})
+
+router.get('/details/:id/comment/all', (req, res) => {
+  const bookId = req.params.id;
+  Comment.find({ book: bookId }).then(comments => {
+    return res.status(200).json(comments);
+  })
 })
 
 module.exports = router;

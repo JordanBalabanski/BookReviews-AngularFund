@@ -47,10 +47,12 @@ export class AuthService {
     return localStorage.getItem('isAdmin') === 'true';
   }
 
-  // canModify(id) {
-  //   console.log(this.user);
-  //   return this.user.posts.includes(id) || localStorage.getItem('isAdmin') === 'true';
-  // }
+  canModify(id) {
+    if (this._user && (this._user['posts'].includes(id) || this._user['roles'].includes('Admin'))) {
+      return true;
+    }
+    return false;
+  }
 
   getToken() {
     return localStorage.getItem('token');

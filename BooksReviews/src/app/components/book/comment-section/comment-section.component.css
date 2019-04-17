@@ -1,0 +1,44 @@
+.container {
+  margin: 3rem 0;
+}
+
+.create {
+  text-align: center;
+}
+
+/* .comment {
+  border: 1px solid black;
+  border-radius: 0.5rem;
+} */
+
+.header {
+  background-color: blue;
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid black;
+  border-radius: 0.5rem;
+}
+
+span {
+  margin: 0.2rem;
+}
+
+textarea {
+  width: 100%;
+  border-radius: 0.7rem;
+}
+
+li {
+  margin-top: 1rem;
+  list-style: none;
+}
+
+p {
+  padding: 0.5rem;
+  border-bottom: 1px solid black;
+  border-left: 1px solid black;
+  border-right: 1px solid black;
+  border-radius: 0.5rem;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+}

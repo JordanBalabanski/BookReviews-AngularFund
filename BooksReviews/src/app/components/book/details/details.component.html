@@ -11,8 +11,9 @@
       <p>{{book.content}}</p>
     </div>
   </div>
-  <div class="btns">
+  <div class="btns" *ngIf="authService.canModify(book._id)">
     <a routerLink="/books/edit/{{book._id}}" class="btn btn-primary">Edit</a>
     <button class="btn btn-danger" (click)="delete(book._id)">Delete</button>
   </div>
+  <app-comment-section></app-comment-section>
 </div>
