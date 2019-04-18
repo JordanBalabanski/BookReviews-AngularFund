@@ -11,6 +11,7 @@ export class CommentService {
   private readonly baseURL = 'http://localhost:5000/books/details/';
   private readonly createURL = '/comment/create';
   private readonly listAllURL = '/comment/all';
+  private readonly deleteURL = 'http://localhost:5000/books/comment/delete/';
 
   constructor(private http: HttpClient) { }
 
@@ -20,5 +21,9 @@ export class CommentService {
 
   listAll(id) {
     return this.http.get<IComment[]>(this.baseURL + id + this.listAllURL);
+  }
+
+  delete(id) {
+    return this.http.delete(this.deleteURL + id);
   }
 }

@@ -255,4 +255,14 @@ router.get('/details/:id/comment/all', (req, res) => {
   })
 })
 
+router.delete('/comment/delete/:id', (req, res) => {
+  const id = req.params.id;
+  Comment.findByIdAndDelete(id).then(() => {
+    return res.status(200).json({
+      success: true,
+      message: "Comment deleted successfully!"
+    });
+  })
+})
+
 module.exports = router;

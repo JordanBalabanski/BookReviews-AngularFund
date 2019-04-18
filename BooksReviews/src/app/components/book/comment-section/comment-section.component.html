@@ -11,7 +11,11 @@
           <div class="comment">
             <div class="header">
               <span><i class="fas fa-user"></i> {{comment.creator}}</span>
-              <span><i class="fas fa-clock"></i> {{comment.date | date: 'HH:mm:ss dd MMM yyyy EEEE'}}</span>
+              <span>
+                <i class="fas fa-clock"></i>
+                {{comment.date | date: 'HH:mm:ss dd MMM yyyy EEEE'}}
+                <span *ngIf="canDelete" (click)="delete(comment._id)"><i class="fas fa-trash-alt"></i></span>
+              </span>
             </div>
             <p class="content">
               {{comment.content}}
