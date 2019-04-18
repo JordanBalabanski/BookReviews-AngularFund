@@ -36,7 +36,18 @@ a {
   text-transform: uppercase;
 }
 
-a:hover {
+button {
+  margin: 0.3rem 0;
+}
+
+i {
+  color: white;
+  border: 1px solid white;
+  border-radius: 0.4rem;
+  padding: 0.4rem;
+}
+
+a:hover, i:hover {
   background-color: white;
   color: blue;
 }
