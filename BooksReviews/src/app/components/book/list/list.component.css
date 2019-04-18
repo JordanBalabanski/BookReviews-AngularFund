@@ -8,6 +8,10 @@
   margin-bottom: 1rem;
 }
 
+.noBooks {
+  text-align: center;
+}
+
 input {
   width: 50%;
   border-radius: 1rem;

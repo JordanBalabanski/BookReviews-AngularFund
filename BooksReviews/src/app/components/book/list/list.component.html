@@ -13,7 +13,11 @@
       <li><button (click)="filter('Other')">Other</button></li>
     </ul>
   </div>
-  <div class="books">
+  <div class="books" *ngIf="booksToShow.length; else none">
     <app-show-books [booksToShow]="booksToShow"></app-show-books>
   </div>
 </div>
+
+<ng-template #none>
+  <div class="noBooks"><span>No books reviews to show!</span></div>
+</ng-template>
